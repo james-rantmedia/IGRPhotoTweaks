@@ -98,6 +98,17 @@ open class IGRPhotoTweakViewController: UIViewController {
     
     // MARK: - Public
     
+	public func updateImage(image: UIImage) {
+		self.image = image
+		photoView.removeFromSuperview()
+		photoView = IGRPhotoTweakView(frame: self.view.bounds,
+									  image: self.image,
+									  customizationDelegate: self)
+		photoView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		self.view.addSubview(photoView)
+		setupSubviews()
+	}
+	
     public func resetView() {
         self.photoView.resetView()
         self.stopChangeAngle()
